@@ -1,0 +1,204 @@
+<style>
+  body { margin: 0; padding: 0; overflow-x: hidden; }
+  .background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  .video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0px); opacity: 1; }
+    100% { transform: translateY(-60px); opacity: 0; }
+  }
+  @keyframes floatBottomLeftToTopRight {
+    0% { transform: translateX(0) translateY(0); opacity: 1; }
+    25% { transform: translateX(150px) translateY(-150px); opacity: 1; }
+    50% { transform: translateX(-100px) translateY(-300px); opacity: 1; }
+    75% { transform: translateX(150px) translateY(-450px); opacity: 1; }
+    100% { transform: translateX(0) translateY(calc(-100vh - 100px)); opacity: 0; }
+  }
+  @keyframes floatBottomRightToTopLeft {
+    0% { transform: translateX(0) translateY(0); opacity: 1; }
+    25% { transform: translateX(-150px) translateY(-150px); opacity: 1; }
+    50% { transform: translateX(100px) translateY(-300px); opacity: 1; }
+    75% { transform: translateX(-150px) translateY(-450px); opacity: 1; }
+    100% { transform: translateX(0) translateY(calc(-100vh - 100px)); opacity: 0; }
+  }
+  @keyframes floatTopLeftToBottomRight {
+    0% { transform: translateX(0) translateY(0); opacity: 1; }
+    25% { transform: translateX(150px) translateY(150px); opacity: 1; }
+    50% { transform: translateX(-100px) translateY(300px); opacity: 1; }
+    75% { transform: translateX(150px) translateY(450px); opacity: 1; }
+    100% { transform: translateX(0) translateY(calc(100vh + 100px)); opacity: 0; }
+  }
+  @keyframes floatTopRightToBottomLeft {
+    0% { transform: translateX(0) translateY(0); opacity: 1; }
+    25% { transform: translateX(-150px) translateY(150px); opacity: 1; }
+    50% { transform: translateX(100px) translateY(300px); opacity: 1; }
+    75% { transform: translateX(-150px) translateY(450px); opacity: 1; }
+    100% { transform: translateX(0) translateY(calc(100vh + 100px)); opacity: 0; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+  @keyframes shimmer {
+    0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; }
+  }
+  .heart-float {
+    position: fixed;
+    font-size: 18px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .section { animation: fadeIn 0.8s ease both; }
+  .s1 { animation-delay: 0.1s; }
+  .s2 { animation-delay: 0.4s; }
+  .s3 { animation-delay: 0.7s; }
+  .s4 { animation-delay: 1.0s; }
+  .s5 { animation-delay: 1.3s; }
+  .s6 { animation-delay: 1.6s; }
+  .media-placeholder {
+    border: 1.5px dashed var(--color-border-secondary);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-background-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .media-placeholder:hover { background: var(--color-background-tertiary); }
+  .big-heart { animation: pulse 1.6s ease-in-out infinite; display: inline-block; color: #D4537E; font-size: 48px; }
+  .signature { font-family: var(--font-serif); font-style: italic; }
+</style>
+
+<video autoplay muted loop class="background-video" id="bg-video">
+  <source src="VID-20260105-WA0005.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+<audio autoplay loop style="display: none;" id="bg-audio">
+  <source src="01 - Busy Signal - Happy Birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div style="max-width: 580px; margin: 0 auto; padding: 2rem 1rem 3rem; position: relative; z-index: 1;">
+
+  <div class="section s1" style="text-align: center; margin-bottom: 2rem; position: relative;" id="heart-zone">
+    <div class="big-heart" id="heart-btn" title="Happy Birthday!">♥</div>
+  </div>
+
+  <div class="section s2" style="text-align: center; margin-bottom: 2rem;">
+    <p style="font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: #D4537E; margin: 0 0 6px; font-weight: 500;">Happy Birthday</p>
+    <h1 style="font-size: 40px; font-weight: 500; margin: 0; color: var(--color-text-primary); line-height: 1.2; font-family: 'Bradley Hand ITC', cursive;">Mirembe Catherine, Sweet 😋 Katerina</h1>
+    <div style="width: 48px; height: 2px; background: #D4537E; margin: 14px auto 0; border-radius: 2px;"></div>
+  </div>
+
+  <div class="section s3" style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;">
+    <p style="font-size: 18px; line-height: 1.9; color: var(--color-text-primary); margin: 0;">
+      sweet Katerina, <br><br>
+      On this beautiful day that the world was blessed with your arrival, I find myself overwhelmed with gratitude — grateful that life, in all its mystery, chose to place you in my path.
+    </p>
+  </div>
+
+  <div class="section s4" style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;">
+    <p style="font-size: 18px; line-height: 1.9; color: var(--color-text-primary); margin: 0;">
+      You are the kind of person who makes ordinary moments feel like poetry. Your laughter is my favourite sound, your presence my safest place. Loving you is the easiest and most wonderful thing I have ever done.
+    </p>
+  </div>
+
+  <div class="section s4" style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;">
+    <p style="font-size: 18px; line-height: 1.9; color: var(--color-text-primary); margin: 0;">
+      Today I celebrate not just the day you were born, but every laugh shared, every quiet moment, every dream we hold together. May this year wrap you in joy, surround you with love, and bring every beautiful thing you deserve — because you deserve all of it and more.
+    </p>
+  </div>
+
+  <div class="section s4" style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 1.75rem;">
+    <p style="font-size: 18px; line-height: 1.9; color: var(--color-text-primary); margin: 0 0 1rem;">
+      Happy birthday, my love. You are one of a kind. Pure and precious master piece of art.🕯
+    </p>
+    <div style="border-top: 0.5px solid var(--color-border-tertiary); padding-top: 1rem; text-align: right;">
+      <p style="margin: 0; color: var(--color-text-secondary); font-size: 18px;">With all of me,</p>
+      <p class="signature" style="margin: 4px 0 0; font-size: 12px; color: #D4537E;">Tumusiime Venance Veronica</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Auto-play video and audio when page loads
+  window.addEventListener('load', () => {
+    const video = document.getElementById('bg-video');
+    const audio = document.getElementById('bg-audio');
+    
+    if (video) {
+      video.play().catch(err => console.log('Video autoplay blocked:', err));
+    }
+    if (audio) {
+      audio.play().catch(err => console.log('Audio autoplay blocked:', err));
+    }
+  });
+
+  function createFloatingElements() {
+    const elements = ['🍾', '👀', '🥳', '💕', '🌹'];
+    const colors = ['#D4537E', '#E75480', '#FF69B4', '#FF1493', '#DC143C'];
+    const corners = ['bottom-left', 'bottom-right', 'top-left', 'top-right'];
+    const corner = corners[Math.floor(Math.random() * corners.length)];
+    
+    const el = document.createElement('span');
+    el.className = 'heart-float';
+    el.textContent = elements[Math.floor(Math.random() * elements.length)];
+    el.style.color = colors[Math.floor(Math.random() * colors.length)];
+    el.style.fontSize = (14 + Math.random() * 18) + 'px';
+    const duration = 8 + Math.random() * 6;
+    el.style.animationDuration = duration + 's';
+    
+    // Set starting position and animation based on corner
+    if (corner === 'bottom-left') {
+      el.style.left = (window.innerWidth / 2 - 50) + 'px';
+      el.style.top = (window.innerHeight + 50) + 'px';
+      el.style.animation = `floatBottomLeftToTopRight ${duration}s ease-in-out forwards`;
+    } else if (corner === 'bottom-right') {
+      el.style.left = (window.innerWidth / 2 - 50) + 'px';
+      el.style.top = (window.innerHeight + 50) + 'px';
+      el.style.animation = `floatBottomRightToTopLeft ${duration}s ease-in-out forwards`;
+    } else if (corner === 'top-left') {
+      el.style.left = (window.innerWidth / 2 - 50) + 'px';
+      el.style.top = -50 + 'px';
+      el.style.animation = `floatTopLeftToBottomRight ${duration}s ease-in-out forwards`;
+    } else {
+      el.style.left = (window.innerWidth / 2 - 50) + 'px';
+      el.style.top = -50 + 'px';
+      el.style.animation = `floatTopRightToBottomLeft ${duration}s ease-in-out forwards`;
+    }
+    
+    document.body.appendChild(el);
+    
+    setTimeout(() => el.remove(), duration * 1000 + 500);
+  }
+  
+  createFloatingElements();
+  setInterval(() => {
+    for (let i = 0; i < 2; i++) {
+      setTimeout(createFloatingElements, i * 100);
+    }
+  }, 250);
+</script>
