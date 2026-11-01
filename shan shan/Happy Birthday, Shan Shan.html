@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Shan Shan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --night:#2a1230; --plum:#4a1f4f; --rose:#ff8fa3; --peach:#ffc9a8; --butter:#ffe9a8; --ink:#fff4ec;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%}
+html,body{margin:0}
+body{
+  min-height:100%; color:var(--ink);
+  font-family:"Fraunces",Georgia,"Times New Roman",serif;
+  background:#000 url("Screenshot 2026-11-01 183019.png") center / cover fixed;
+  overflow-x:hidden;
+}
+main{max-width:640px;margin:0 auto;padding:28px 20px 90px;text-align:center;position:relative;z-index:2}
+h1{font-family:"Caveat","Segoe Script",cursive;font-weight:700;font-size:clamp(3rem,13vw,5.2rem);line-height:1;margin:18px 0 6px;color:var(--butter)}
+.sub{margin:0 0 26px;color:var(--peach);font-style:italic;font-size:1.05rem}
+
+.letter{
+  text-align:left;background:rgba(0,0,0,.45);border:1px solid rgba(255,201,168,.45);
+  border-radius:18px;padding:26px 24px;line-height:1.75;font-size:1.08rem;
+}
+.letter p{margin:0 0 1em}
+.letter .sign{font-family:"Caveat",cursive;font-size:1.7rem;color:var(--rose);margin:.4em 0 0;text-align:right}
+
+.fly{position:fixed;bottom:-60px;z-index:1;pointer-events:none;will-change:transform,opacity;animation:rise linear forwards}
+@keyframes rise{
+  0%{transform:translate(0,0) rotate(0);opacity:0}
+  10%{opacity:1}
+  100%{transform:translate(var(--dx),-115vh) rotate(var(--rot));opacity:0}
+}
+@media (prefers-reduced-motion:reduce){.fly{animation-duration:6s!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Happy Birthday, Shan Shan! 🥂</h1>
+  <p class="sub">Today the world celebrates you.</p>
+
+  <section class="letter" aria-label="Birthday message">
+    <p>sweet 😘 lovely Shan Shan,</p>
+    <p>Some people walk into our lives and quietly make everything brighter✨. You are one of them. Your kindness, your laughter and the way you make me feel seen are gifts I never take for granted.</p>
+    <p>On your special day, I hope you feel as loved 🥰 as you make everyone around you feel. May this new year bring you gentle mornings, brave dreams coming true, and moments that make your heart feel full.</p>
+    <p>Thank you for being you. I'm so lucky to have you.</p>
+    <p class="sign">vvt... 🥷🏽 💖</p>
+  </section>
+
+  <audio id="audio" src="01 - Busy Signal - Happy Birthday.mp3" autoplay loop preload="auto"></audio>
+</main>
+
+<script>
+(function(){
+  var EMOJIS = ["🎂","🎉","💕","💖","👽","✨","🎁","🥳","💐","👀","🍰","💫","🦋","😘","💝"];
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function fly(){
+    var el = document.createElement("span");
+    el.className = "fly";
+    el.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    el.style.left = (Math.random()*96) + "vw";
+    el.style.fontSize = (22 + Math.random()*34) + "px";
+    el.style.setProperty("--dx", (Math.random()*160-80) + "px");
+    el.style.setProperty("--rot", (Math.random()*80-40) + "deg");
+    el.style.animationDuration = (6 + Math.random()*6) + "s";
+    document.body.appendChild(el);
+    el.addEventListener("animationend", function(){ el.remove(); });
+  }
+  function burst(n){ for(var i=0;i<n;i++) setTimeout(fly, i*70); }
+
+  setInterval(fly, reduce ? 1800 : 650);
+  burst(reduce ? 4 : 18);
+
+  var audio = document.getElementById("audio");
+  function startSong(){
+    audio.play().then(function(){
+      document.removeEventListener("pointerdown", startSong);
+      document.removeEventListener("keydown", startSong);
+    }).catch(function(){});
+  }
+  startSong();
+  document.addEventListener("pointerdown", startSong, { once:true });
+  document.addEventListener("keydown", startSong, { once:true });
+})();
+</script>
+</body>
+</html>
